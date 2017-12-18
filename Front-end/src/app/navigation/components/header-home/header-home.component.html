@@ -1,0 +1,37 @@
+<nav class="an-nav fixed-top">
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link active" href="#">Doradź!</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Najnowsze</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Top</a></li>
+      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Kategorie</a>
+        <div class="dropdown-menu"><a class="dropdown-item" href="#">Turystyka</a> <a class="dropdown-item" href="#">Technologie</a>
+          <a class="dropdown-item" href="#">Wyznania</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Inne</a></div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="#">Dodaj</a></li>
+      <form class="form-inline my-2 my-lg-0 ml-auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="Szukaj">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Szukaj</button>
+      </form>
+      <div class="btn-group an-user-profile">
+
+          <img src="../../../../assets/icons/user.svg" class="an-user-icon dropdown-toggle" data-toggle="dropdown" alt="user image">
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <button class="dropdown-item" type="button">Poproś o rade</button>
+          <button class="dropdown-item" type="button">Moje dyskusje</button>
+          <button class="dropdown-item" type="button">Ulubione</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" type="button" [routerLink]="['/reset-password']">Zmień hasło</button>
+          <button class="dropdown-item" type="button">Zmień avatar</button>
+          <button class="dropdown-item" type="button">Wyloguj</button>
+        </div>
+      </div>
+
+
+    </ul>
+  </div>
+</nav>

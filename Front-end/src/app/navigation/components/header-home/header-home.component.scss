@@ -1,0 +1,25 @@
+$primary-color: #a21a1a;
+
+.an-nav {
+  background-color: $primary-color;
+  width: 100%;
+  padding: 10px;
+  .nav-link {
+    color:white;
+  }
+
+  .an-user-icon{
+    height: 38px;
+    margin-left:7px;
+  }
+
+  .active, .btn, .form-control{
+    border-radius: 0;
+  }
+
+  .an-user-profile, .dropdown-item{
+    cursor: pointer;
+  }
+}
+
+
