@@ -1,11 +1,9 @@
-import itertools
 from flask_restful import Resource, reqparse
 from common.MySqlConfig import MySqlConfig
 from common.JsonParser import JsonParser
-import json
 
 
-class User:
+class Users:
     mysql = MySqlConfig.mysql
 
     # Parse the arguments
@@ -21,7 +19,7 @@ class User:
         _userEmail = args['email']
         _userPassword = args['password']
 
-        conn = User.mysql.connect()
+        conn = Users.mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spCreateUser', (_userName, _userEmail, _userPassword))
         data = cursor.fetchall()
@@ -34,11 +32,8 @@ class User:
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
 
-    def getUser(self, userID):
-        return userID
-
     def getAllUsers(self):
-        conn = User.mysql.connect()
+        conn = Users.mysql.connect()
         cursor = conn.cursor()
         cursor.execute("SELECT UserId, UserName, UserEmail FROM users;")
         results = JsonParser.parseToJson(cursor)
@@ -46,14 +41,26 @@ class User:
         conn.close
         return results
 
-
-
     def getUserDetails(self, userID):
-        conn = User.mysql.connect()
+        conn = Users.mysql.connect()
         cursor = conn.cursor()
         query = ("SELECT UserId, UserName, UserEmail FROM users WHERE UserId='%d'")
         cursor.execute(query % userID)
         results = JsonParser.parseToJson(cursor)
         cursor.close
         conn.close
+        return results
+
+    def deleteUser(self, userID):
+        conn = Users.mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spDeleteUser', str(userID))
+        data = cursor.fetchall()
+        if len(data) is 0:
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return {'StatusCode': '201', 'Message': 'User deletion success'}
+        else:
+            return {'StatusCode': '1000', 'Message': str(data[0])}
         return results

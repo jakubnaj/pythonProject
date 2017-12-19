@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from decorators.ErrorHandler import handle_error
-from models.User import User
+from models.Users import Users
 
 
 class CreateUser(Resource):
@@ -10,16 +10,22 @@ class CreateUser(Resource):
 
     @handle_error
     def post(self):
-        return User.createUser(self)
+        return Users.createUser(self)
 
 
 class GetAllUsers(Resource):
     @handle_error
     def get(self):
-        return User.getAllUsers(self)
+        return Users.getAllUsers(self)
 
-class UserDetails(Resource):
+class User(Resource):
     @handle_error
     def get(self, userID):
-        return User.getUserDetails(self, userID)
+        return Users.getUserDetails(self, userID)
+
+    @handle_error
+    def delete(self, userID):
+        return Users.deleteUser(self, userID)
+
+
 
