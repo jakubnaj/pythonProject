@@ -4,9 +4,11 @@ from resources.UserDispatcher import CreateUser, GetAllUsers, User, ChangePasswo
 from resources.AdviceDispatcher import Advice, singleAdvice
 from common.MySqlConfig import MySqlConfig
 
+
 app = Flask(__name__)
 api = Api(app, prefix="/api/v1")
 MySqlConfig.initDatabase(app)
+
 
 # User resources
 api.add_resource(CreateUser, '/createUser')
