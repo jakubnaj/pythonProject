@@ -28,7 +28,7 @@ class Users:
             conn.commit()
             cursor.close()
             conn.close()
-            return {'StatusCode': '201', 'Message': 'User creation success'}
+            return {'StatusCode': '201', 'Message': 'User creation success'}, 201
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
 
@@ -39,6 +39,8 @@ class Users:
         results = JsonParser.parseToJson(cursor)
         cursor.close
         conn.close
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
         return results
 
     def getUserDetails(self, userID):
@@ -49,6 +51,8 @@ class Users:
         results = JsonParser.parseToJson(cursor)
         cursor.close
         conn.close
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
         return results
 
     def deleteUser(self, userID):
@@ -63,4 +67,27 @@ class Users:
             return {'StatusCode': '201', 'Message': 'User deletion success'}
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
-        return results
+
+    def changePassword(self, userID):
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('oldPassword', type=str, help='old Password', required=True)
+        parser.add_argument('newPassword', type=str, help='new Password', required=True)
+        args = parser.parse_args()
+
+        _userId = userID
+        _oldPassword = args['oldPassword']
+        _newPassword = args['newPassword']
+
+        conn = Users.mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spChangePassword', (_userId, _oldPassword, _newPassword))
+        data = cursor.fetchall()
+
+        if len(data) is 0:
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return {'StatusCode': '200', 'Message': 'User password Changed'}
+        else:
+            return {'StatusCode': '1000', 'Message': str(data[0])}
