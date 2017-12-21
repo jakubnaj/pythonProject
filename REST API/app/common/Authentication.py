@@ -1,7 +1,6 @@
-from flask_restful import Resource, reqparse
 from common.MySqlConfig import MySqlConfig
 from common.JsonParser import JsonParser
-from flask_httpauth import HTTPBasicAuth
+
 
 class Authentication:
     mysql = MySqlConfig.mysql

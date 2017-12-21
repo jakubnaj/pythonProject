@@ -11,7 +11,7 @@ Authentication.init(Authentication, auth, adminAuth)
 
 class CreateUser(Resource):
     @handle_error
-    @adminAuth.login_required
+    @auth.login_required
     def post(self):
         return Users.createUser(self)
 

@@ -58,7 +58,8 @@ class Users:
     def deleteUser(self, userID):
         conn = Users.mysql.connect()
         cursor = conn.cursor()
-        cursor.callproc('spDeleteUser', str(userID))
+        query = ("DELETE FROM users WHERE UserId='%d'")
+        cursor.execute(query % userID)
         data = cursor.fetchall()
         if len(data) is 0:
             conn.commit()

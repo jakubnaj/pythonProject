@@ -4,5 +4,4 @@ def handle_error(func):
             return func(self, *args, **kwds)
         except Exception as e:
             return {'error': str(e)}
-
     return func_wrapper
