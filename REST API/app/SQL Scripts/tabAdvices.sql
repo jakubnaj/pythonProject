@@ -7,7 +7,6 @@ CREATE TABLE `adwisedb`.`advices` (
   `CreateDate` VARCHAR(100) NOT NULL,
   `ViewsQuantity` INT NULL,
   `CommentsQuantity` INT NULL,
-  `CommentsID` INT NULL,
   `body` TEXT(1000) NULL
   PRIMARY KEY (`Id`),
   UNIQUE INDEX `Id_UNIQUE` (`Id` ASC));

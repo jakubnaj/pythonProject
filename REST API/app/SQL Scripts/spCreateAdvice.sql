@@ -22,7 +22,6 @@ insert into advices
     CreateDate,
     ViewsQuantity,
     CommentsQuantity,
-    CommentsID,
     Body
     
 )
@@ -33,9 +32,8 @@ values
     p_adviceCategoryID,
     p_adviceAuthorID,
     p_adviceCreateDate,
-    1,
-    1,
-    1,
+    0,
+    0,
     p_adviceBody
 );
 END;

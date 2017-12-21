@@ -20,6 +20,7 @@ class Comments(BaseModel):
         results = BaseModel.baseRequest(self, "SELECT * FROM comments WHERE adviceID='{0}'", adviceID)
         if not results:
             return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        BaseModel.baseRequest(self, "UPDATE advices SET ViewsQuantity = ViewsQuantity + 1 WHERE Id='{0}'", adviceID)
         return results
 
     def deleteSingleComment(self, commentID):
@@ -53,6 +54,7 @@ class Comments(BaseModel):
             conn.commit()
             cursor.close()
             conn.close()
+            BaseModel.baseRequest(self, "UPDATE advices SET CommentsQuantity = CommentsQuantity + 1 WHERE Id='{0}'", _adviceID)
             return {'StatusCode': '201', 'Message': 'Comment creation success'}, 201
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
