@@ -32,9 +32,9 @@ class singleComment(Resource):
     def delete(self, commentID):
         return Comments.deleteSingleComment(self, commentID)
 
+
 class adviceComments(Resource):
     @handle_error
     @auth.login_required
     def get(self, adviceID):
         return Comments.getAdviceComments(self, adviceID)
-

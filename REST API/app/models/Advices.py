@@ -2,10 +2,26 @@ from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
 from common.JsonParser import JsonParser
 from datetime import datetime
+from models.BaseModel import BaseModel
 
 
-class Advices:
+class Advices(BaseModel):
     mysql = MySqlConfig.mysql
+
+    def getAllAdvices(self):
+        return BaseModel.baseRequest(self, "SELECT * FROM advices;")
+
+    def getSingleAdvice(self, adviceID):
+        results = BaseModel.baseRequest(self, "SELECT * FROM advices WHERE Id='{0}'", adviceID)
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        return results
+
+    def deleteSingleAdvice(self, adviceID):
+        if not BaseModel.baseRequest(self, "SELECT * FROM advices WHERE Id='{0}'", adviceID):
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        BaseModel.baseRequest(self, "DELETE FROM advices WHERE Id='{0}'", adviceID)
+        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
 
     def createAdvice(self):
 
@@ -37,40 +53,5 @@ class Advices:
             cursor.close()
             conn.close()
             return {'StatusCode': '201', 'Message': 'Advice creation success'}
-        else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
-
-    def getAllAdvices(self):
-        conn = Advices.mysql.connect()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM advices;")
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        return results
-
-    def getSingleAdvice(self, adviceID):
-        conn = Advices.mysql.connect()
-        cursor = conn.cursor()
-        query = ("SELECT * FROM advices WHERE Id='%d'")
-        cursor.execute(query % adviceID)
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
-        return results
-
-    def deleteSingleAdvice(self, adviceID):
-        conn = Advices.mysql.connect()
-        cursor = conn.cursor()
-        query = ("DELETE FROM advices WHERE Id='%d'")
-        cursor.execute(query % adviceID)
-        data = cursor.fetchall()
-        if len(data) is 0:
-            conn.commit()
-            cursor.close()
-            conn.close()
-            return {'StatusCode': '200', 'Message': 'Advice deletion success'}
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}

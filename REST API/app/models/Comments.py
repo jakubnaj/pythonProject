@@ -1,11 +1,32 @@
 from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
-from common.JsonParser import JsonParser
 from datetime import datetime
+from models.BaseModel import BaseModel
 
 
-class Comments:
+class Comments(BaseModel):
     mysql = MySqlConfig.mysql
+
+    def getAllComments(self):
+        return BaseModel.baseRequest(self, "SELECT * FROM comments;")
+
+    def getSingleComment(self, commentID):
+        results = BaseModel.baseRequest(self, "SELECT * FROM comments WHERE ID='{0}'", commentID)
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        return results
+
+    def getAdviceComments(self, adviceID):
+        results = BaseModel.baseRequest(self, "SELECT * FROM comments WHERE adviceID='{0}'", adviceID)
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        return results
+
+    def deleteSingleComment(self, commentID):
+        if not BaseModel.baseRequest(self, "SELECT * FROM comments WHERE Id='{0}'", commentID):
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        BaseModel.baseRequest(self, "DELETE FROM comments WHERE Id='{0}'", commentID)
+        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
 
     def createComment(self):
         parser = reqparse.RequestParser()
@@ -18,14 +39,14 @@ class Comments:
 
         _adviceID = args['adviceID']
         _authorID = args['authorID']
-        _content = args['content']
         _createDate = str(datetime.now())
+        _content = args['content']
         _likesQuantity = args['likesQuantity']
 
         conn = Comments.mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spCreateComment',
-                        (_adviceID, _authorID, _content, _createDate, _likesQuantity))
+                        (_adviceID, _authorID, _createDate, _content, _likesQuantity))
         data = cursor.fetchall()
 
         if len(data) is 0:
@@ -35,48 +56,3 @@ class Comments:
             return {'StatusCode': '201', 'Message': 'Comment creation success'}, 201
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
-
-    def getAllComments(self):
-        conn = Comments.mysql.connect()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM comments;")
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        return results
-
-    def getSingleComment(self, commentID):
-        conn = Comments.mysql.connect()
-        cursor = conn.cursor()
-        query = ("SELECT * FROM comments WHERE ID='%d'")
-        cursor.execute(query % commentID)
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
-        return results
-
-    def deleteSingleComment(self, commentID):
-        conn = Comments.mysql.connect()
-        cursor = conn.cursor()
-        query = ("DELETE FROM comments WHERE ID='%d'")
-        cursor.execute(query % commentID)
-        data = cursor.fetchall()
-        if len(data) is 0:
-            conn.commit()
-            cursor.close()
-            conn.close()
-            return {'StatusCode': '200', 'Message': 'Comment deletion success'}
-        else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
-
-    def getAdviceComments(self, adviceID):
-        conn = Comments.mysql.connect()
-        cursor = conn.cursor()
-        query = ("SELECT * FROM comments WHERE adviceID ='%d';")
-        cursor.execute(query % adviceID)
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        return results

@@ -9,6 +9,7 @@ adminAuth = HTTPBasicAuth()
 
 Authentication.init(Authentication, auth, adminAuth)
 
+
 class Category(Resource):
     @handle_error
     def get(self):
@@ -18,6 +19,7 @@ class Category(Resource):
     @adminAuth.login_required
     def post(self):
         return Categories.createCategory(self)
+
 
 class singleCategory(Resource):
     @handle_error

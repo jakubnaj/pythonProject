@@ -1,4 +1,3 @@
-from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
 from common.JsonParser import JsonParser
 
@@ -15,5 +14,3 @@ class BaseModel:
         cursor.close
         conn.close
         return results
-
-

@@ -9,30 +9,29 @@ adminAuth = HTTPBasicAuth()
 
 Authentication.init(Authentication, auth, adminAuth)
 
-class CreateUser(Resource):
+
+class User(Resource):
+    @handle_error
+    @adminAuth.login_required
+    def get(self):
+        return Users.getAllUsers(self)
+
     @handle_error
     @auth.login_required
     def post(self):
         return Users.createUser(self)
 
 
-class GetAllUsers(Resource):
-    @handle_error
-    @auth.login_required
-    def get(self):
-        return Users.getAllUsers(self)
-
-
-class User(Resource):
+class SingleUser(Resource):
     @handle_error
     @auth.login_required
     def get(self, userID):
-        return Users.getUserDetails(self, userID)
+        return Users.getSingleUser(self, userID)
 
     @handle_error
     @adminAuth.login_required
     def delete(self, userID):
-        return Users.deleteUser(self, userID)
+        return Users.deleteSingleUser(self, userID)
 
 
 class ChangePassword(Resource):

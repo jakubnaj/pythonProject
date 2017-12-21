@@ -1,12 +1,26 @@
-from flask_restful import Resource, reqparse
+from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
-from common.JsonParser import JsonParser
+from models.BaseModel import BaseModel
 
 
-class Users:
+class Users(BaseModel):
     mysql = MySqlConfig.mysql
 
-    # Parse the arguments
+    def getAllUsers(self):
+        return BaseModel.baseRequest(self, "SELECT UserId, UserName, UserEmail FROM users;")
+
+    def getSingleUser(self, userID):
+        results = BaseModel.baseRequest(self, "SELECT * FROM users WHERE UserId='{0}'", userID)
+        if not results:
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        return results
+
+    def deleteSingleUser(self, userID):
+        if not BaseModel.baseRequest(self, "SELECT * FROM users WHERE UserId='{0}'", userID):
+            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+        BaseModel.baseRequest(self, "DELETE FROM users WHERE UserId='{0}'", userID)
+        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
+
     def createUser(self):
 
         parser = reqparse.RequestParser()
@@ -29,43 +43,6 @@ class Users:
             cursor.close()
             conn.close()
             return {'StatusCode': '201', 'Message': 'User creation success'}, 201
-        else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
-
-    def getAllUsers(self):
-        conn = Users.mysql.connect()
-        cursor = conn.cursor()
-        cursor.execute("SELECT UserId, UserName, UserEmail FROM users;")
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
-        return results
-
-    def getUserDetails(self, userID):
-        conn = Users.mysql.connect()
-        cursor = conn.cursor()
-        query = ("SELECT UserId, UserName, UserEmail FROM users WHERE UserId='%d'")
-        cursor.execute(query % userID)
-        results = JsonParser.parseToJson(cursor)
-        cursor.close
-        conn.close
-        if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
-        return results
-
-    def deleteUser(self, userID):
-        conn = Users.mysql.connect()
-        cursor = conn.cursor()
-        query = ("DELETE FROM users WHERE UserId='%d'")
-        cursor.execute(query % userID)
-        data = cursor.fetchall()
-        if len(data) is 0:
-            conn.commit()
-            cursor.close()
-            conn.close()
-            return {'StatusCode': '201', 'Message': 'User deletion success'}
         else:
             return {'StatusCode': '1000', 'Message': str(data[0])}
 
