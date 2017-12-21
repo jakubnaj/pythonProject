@@ -1,3 +1,7 @@
 1. na rest api "venv/Scripts/Activate"
 2. $env:FLASK_APP = "api.py"
 3. flask run
+
+
+Packages
+pip install nose requests

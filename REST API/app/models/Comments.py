@@ -18,8 +18,6 @@ class Comments(BaseModel):
 
     def getAdviceComments(self, adviceID):
         results = BaseModel.baseRequest(self, "SELECT * FROM comments WHERE adviceID='{0}'", adviceID)
-        if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
         BaseModel.baseRequest(self, "UPDATE advices SET ViewsQuantity = ViewsQuantity + 1 WHERE Id='{0}'", adviceID)
         return results
 

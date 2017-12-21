@@ -1,6 +1,5 @@
 from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
-from common.JsonParser import JsonParser
 from datetime import datetime
 from models.BaseModel import BaseModel
 
