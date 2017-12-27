@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ArticleService} from '../services/article.service'
 
 @Component({
   selector: 'app-wall-container',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wall-container.component.scss']
 })
 export class WallContainerComponent implements OnInit {
-
-  constructor() { }
+  private advices: Array<Object>;
+  
+  //Dependency Injection
+  constructor(private article: ArticleService) { }
 
   ngOnInit() {
+    this.article.getAllArticles().subscribe(data => this.advices = data);
   }
 
 }

@@ -5,9 +5,11 @@ from resources.AdviceDispatcher import Advice, singleAdvice
 from resources.CommentDispatcher import Comment, singleComment, adviceComments
 from resources.CategoryDispatcher import Category, singleCategory
 from common.MySqlConfig import MySqlConfig
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app, prefix="/api/v1")
+cors = CORS(app, resources={r"/api/v1*": {"origins": "*"}})
 MySqlConfig.initDatabase(app)
 
 # Users resources

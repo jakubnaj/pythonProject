@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {NavigationModule} from './navigation/navigation.module';
@@ -21,7 +22,7 @@ import {AccountModule} from './account/account.module'
     RouterModule,
     AccountModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -4,4 +4,4 @@
 
 
 Packages
-pip install nose requests
+pip install -U flask-cors
