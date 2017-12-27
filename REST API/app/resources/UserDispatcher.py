@@ -9,7 +9,7 @@ adminAuth = HTTPBasicAuth()
 
 Authentication.init(Authentication, auth, adminAuth)
 
-
+#toDo application controller
 class User(Resource):
     @handle_error
     @adminAuth.login_required

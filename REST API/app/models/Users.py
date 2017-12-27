@@ -2,7 +2,7 @@ from flask_restful import reqparse
 from common.MySqlConfig import MySqlConfig
 from models.BaseModel import BaseModel
 
-
+# toDo gateway, Data Mapper, Table Data Gateway pattern
 class Users(BaseModel):
     mysql = MySqlConfig.mysql
 

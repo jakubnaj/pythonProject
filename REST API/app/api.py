@@ -8,10 +8,12 @@ from common.MySqlConfig import MySqlConfig
 from flask_cors import CORS
 
 app = Flask(__name__)
+# toDo 2-Pattern Front Controller API Object
 api = Api(app, prefix="/api/v1")
 cors = CORS(app, resources={r"/api/v1*": {"origins": "*"}})
 MySqlConfig.initDatabase(app)
 
+# toDo 1-Pattern Page Controllers e.g User,ChangePassword,Advice etc
 # Users resources
 api.add_resource(User, '/user')
 api.add_resource(ChangePassword, '/user/<int:userID>/changePassword')
