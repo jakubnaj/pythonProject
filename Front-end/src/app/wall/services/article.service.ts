@@ -9,8 +9,9 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
 
-  getAllArticles(): Observable<Object[]> {
-    return this.http.get<Object[]>(environment.endpoints.getAllAdvices);
+  getArticle(Id): Observable<Object[]> {
+    return this.http.get<Object[]>(environment.endpoints.getAdvice);
   }
+  
 }
  

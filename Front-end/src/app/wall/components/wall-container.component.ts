@@ -8,12 +8,12 @@ import {ArticleService} from '../services/article.service'
 })
 export class WallContainerComponent implements OnInit {
   private advices: Array<Object>;
-  
+
   //Dependency Injection
   constructor(private article: ArticleService) { }
 
   ngOnInit() {
-    this.article.getAllArticles().subscribe(data => this.advices = data);
+    this.article.getArticle().subscribe(data => this.advices = data);
   }
 
 }

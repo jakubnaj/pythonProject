@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router/router";
 
 @Component({
   selector: 'app-advice',
@@ -6,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./advice.component.scss']
 })
 export class AdviceComponent implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }

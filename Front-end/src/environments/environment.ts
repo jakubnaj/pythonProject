@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   endpoints: {
-    getAllAdvices: "http://localhost:5000/api/v1/advice"
+    getAdvice: "http://localhost:5000/api/v1/advice"
   }
 };
