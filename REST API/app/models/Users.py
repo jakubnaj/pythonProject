@@ -12,14 +12,14 @@ class Users(BaseModel):
     def getSingleUser(self, userID):
         results = BaseModel.baseRequest(self, "SELECT * FROM users WHERE UserId='{0}'", userID)
         if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         return results
 
     def deleteSingleUser(self, userID):
         if not BaseModel.baseRequest(self, "SELECT * FROM users WHERE UserId='{0}'", userID):
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         BaseModel.baseRequest(self, "DELETE FROM users WHERE UserId='{0}'", userID)
-        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
+        return {'message': 'Delete successful'}, 200
 
     def createUser(self):
 
@@ -42,9 +42,9 @@ class Users(BaseModel):
             conn.commit()
             cursor.close()
             conn.close()
-            return {'StatusCode': '201', 'Message': 'User creation success'}, 201
+            return {'message': 'User creation success'}, 201
         else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
+            return {'message': str(data[0])}, 409
 
     def changePassword(self, userID):
 
@@ -66,6 +66,6 @@ class Users(BaseModel):
             conn.commit()
             cursor.close()
             conn.close()
-            return {'StatusCode': '200', 'Message': 'User password Changed'}
+            return {'message': 'User password Changed'}, 200
         else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
+            return {'message': str(data[0])}, 200

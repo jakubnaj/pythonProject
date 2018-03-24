@@ -9,7 +9,6 @@ adminAuth = HTTPBasicAuth()
 
 Authentication.init(Authentication, auth, adminAuth)
 
-#toDo application controller
 class User(Resource):
     @handle_error
     @adminAuth.login_required
@@ -17,7 +16,6 @@ class User(Resource):
         return Users.getAllUsers(self)
 
     @handle_error
-    @auth.login_required
     def post(self):
         return Users.createUser(self)
 

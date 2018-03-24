@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 import {NavigationModule} from './navigation/navigation.module';
 import {WallModule} from './wall/wall.module';
 import {RoutingModule} from './routing.module';
-import {AccountModule} from './account/account.module'
+import {AccountModule} from './account/account.module';
 
 
 @NgModule({

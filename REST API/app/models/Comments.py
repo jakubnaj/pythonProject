@@ -13,7 +13,7 @@ class Comments(BaseModel):
     def getSingleComment(self, commentID):
         results = BaseModel.baseRequest(self, "SELECT * FROM comments WHERE ID='{0}'", commentID)
         if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         return results
 
     def getAdviceComments(self, adviceID):
@@ -23,9 +23,9 @@ class Comments(BaseModel):
 
     def deleteSingleComment(self, commentID):
         if not BaseModel.baseRequest(self, "SELECT * FROM comments WHERE Id='{0}'", commentID):
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         BaseModel.baseRequest(self, "DELETE FROM comments WHERE Id='{0}'", commentID)
-        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
+        return {'message': 'Delete successful'}, 200
 
     def createComment(self):
         parser = reqparse.RequestParser()
@@ -53,6 +53,6 @@ class Comments(BaseModel):
             cursor.close()
             conn.close()
             BaseModel.baseRequest(self, "UPDATE advices SET CommentsQuantity = CommentsQuantity + 1 WHERE Id='{0}'", _adviceID)
-            return {'StatusCode': '201', 'Message': 'Comment creation success'}, 201
+            return {'message': 'Comment creation success'}, 201
         else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
+            return {'message': str(data[0])}

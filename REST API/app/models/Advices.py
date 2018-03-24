@@ -13,14 +13,14 @@ class Advices(BaseModel):
     def getSingleAdvice(self, adviceID):
         results = BaseModel.baseRequest(self, "SELECT * FROM advices WHERE Id='{0}'", adviceID)
         if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         return results
 
     def deleteSingleAdvice(self, adviceID):
         if not BaseModel.baseRequest(self, "SELECT * FROM advices WHERE Id='{0}'", adviceID):
             return {'StatusCode': '404', 'Message': '404 not found'}, 404
         BaseModel.baseRequest(self, "DELETE FROM advices WHERE Id='{0}'", adviceID)
-        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
+        return {'message': 'Delete successful'}, 200
 
     def createAdvice(self):
 
@@ -51,6 +51,6 @@ class Advices(BaseModel):
             conn.commit()
             cursor.close()
             conn.close()
-            return {'StatusCode': '201', 'Message': 'Advice creation success'}
+            return {'message': 'Advice creation success'}
         else:
-            return {'StatusCode': '1000', 'Message': str(data[0])}
+            return {'message': str(data[0])}

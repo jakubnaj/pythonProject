@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   endpoints: {
-    getAdvice: "http://localhost:5000/api/v1/advice"
+    getAdvice: "http://localhost:5000/api/v1/advice",
+    createUser: "http://localhost:5000/api/v1/user" 
   }
 };

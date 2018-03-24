@@ -9,14 +9,14 @@ class Categories(BaseModel):
     def getSingleCategory(self, categoryID):
         results = BaseModel.baseRequest(self, "SELECT * FROM categories WHERE Id='{0}'", categoryID)
         if not results:
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         return results
 
     def deleteSingleCategory(self, categoryID):
         if not BaseModel.baseRequest(self, "SELECT * FROM categories WHERE Id='{0}'", categoryID):
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         BaseModel.baseRequest(self, "DELETE FROM categories WHERE Id='{0}'", categoryID)
-        return {'StatusCode': '200', 'Message': 'Delete successful'}, 200
+        return {'message': 'Delete successful'}, 200
 
     def changeCategoryName(self, categoryID):
         parser = reqparse.RequestParser()
@@ -26,12 +26,12 @@ class Categories(BaseModel):
         _categoryID = categoryID
         _newName = args['newName']
         if not BaseModel.baseRequest(self, "SELECT * FROM categories WHERE Id='{0}'", categoryID):
-            return {'StatusCode': '404', 'Message': '404 not found'}, 404
+            return {'message': 'Not found'}, 404
         if Categories.IsCategoryNameExists(self, _newName):
-            return {'error': 'Category name already exists'}, 200
+            return {'message': 'Category name already exists'}, 200
 
         BaseModel.baseRequest(self, "UPDATE categories SET name = '{0}' WHERE id='{1}'", _newName, _categoryID)
-        return {'StatusCode': '200', 'Message': 'Category Updated'}
+        return {'message': 'Category Updated'}
 
     def createCategory(self):
         parser = reqparse.RequestParser()
@@ -40,10 +40,10 @@ class Categories(BaseModel):
 
         _name = args['name']
         if Categories.IsCategoryNameExists(self, _name):
-            return {'error': 'Category name already exists'}, 200
+            return {'message': 'Category name already exists'}, 200
 
         BaseModel.baseRequest(self, "Insert Into categories(Name) values ('{0}') ", _name)
-        return {'StatusCode': '201', 'Message': 'Category creation success'}, 201
+        return {'message': 'Category creation success'}, 201
 
     def IsCategoryNameExists(self, name):
         if not BaseModel.baseRequest(self, "SELECT * FROM categories WHERE name='{0}'", name):

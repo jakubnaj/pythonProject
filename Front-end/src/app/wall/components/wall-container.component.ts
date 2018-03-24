@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleService} from '../services/article.service'
+import {ArticleService} from '../services/article.service';
 
 @Component({
   selector: 'app-wall-container',
@@ -7,9 +7,8 @@ import {ArticleService} from '../services/article.service'
   styleUrls: ['./wall-container.component.scss']
 })
 export class WallContainerComponent implements OnInit {
-  private advices: Array<Object>;
+  advices: Array<Object>;
 
-  //Dependency Injection
   constructor(private article: ArticleService) { }
 
   ngOnInit() {
