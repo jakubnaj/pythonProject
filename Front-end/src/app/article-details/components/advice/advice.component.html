@@ -1,23 +1,21 @@
 <div class="card an-advice ">
-  <h3 class="card-header">LG G3 vs GALAXY Note 5</h3>
+  <h3 class="card-header">{{article?.Title}}</h3>
   <div class="card-body">
     <div class="row">
       <div class="col-12">
-        <p class="card-text">Witam serdecznie, kończy mi się umowa na telefon w przyszłym tygodniu i zastanawiam się który aparat mam wybrac</p>
+        <p class="card-text">{{article?.body}}</p>
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-12 mt-4">
-        <h6 class="text-muted float-left">piekarz007: 5 minut temu </h6>
+        <h6 class="text-muted float-left">{{article?.AuthorID}}: {{article?.CreateDate}} </h6>
         <div class="ml-auto float-right">
-        <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image"> <span
-        class="text-muted">672</span>
-        <img src="../../../../assets/icons/comments.svg" class="an-user-icon" alt="user image"> <span
-        class="text-muted">12</span>
+          <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image">
+          <span class="text-muted">{{article?.ViewsQuantity}}</span>
+          <img src="../../../../assets/icons/comments.svg" class="an-user-icon" alt="user image">
+          <span class="text-muted">{{article?.CommentsQuantity}}</span>
         </div>
       </div>
-
     </div>
   </div>
 </div>
