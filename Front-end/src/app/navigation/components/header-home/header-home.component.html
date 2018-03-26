@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link active">Doradź!</a>
+        <a class="nav-link active" routerLink="/">Doradź!</a>
       </li>
       <li class="nav-item">
         <a class="nav-link">Najnowsze</a>
@@ -13,7 +13,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategorie</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" *ngFor="let category of categories">{{category.Name}}</a>
+          <a class="dropdown-item" *ngFor="let category of categories" routerLink="/category/{{category.Name}}">{{category.Name}}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item">Inne</a>
         </div>
