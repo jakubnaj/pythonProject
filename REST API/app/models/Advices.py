@@ -28,22 +28,22 @@ class Advices(BaseModel):
         parser.add_argument('title', type=str, help='title', required=True)
         parser.add_argument('shortDescription', type=str, help='short description to be shown on main page',
                             required=True)
-        parser.add_argument('categoryID', type=int, help='CategoryID', required=True)
-        parser.add_argument('authorID', type=int, help='AuthorID', required=True)
+        parser.add_argument('categoryName', type=str, help='CategoryName', required=True)
+        parser.add_argument('authorName', type=str, help='AuthorName', required=True)
         parser.add_argument('body', type=str, help='Content', required=True)
         args = parser.parse_args()
 
         _adviceTitle = args['title']
         _adviceShortDescription = args['shortDescription']
-        _adviceCategoryID = args['categoryID']
-        _adviceAuthorID = args['authorID']
+        _adviceCategoryName = args['categoryName']
+        _adviceAuthorName = args['authorName']
         _adviceCreateDate = str(datetime.now())
         _adviceBody = args['body']
 
         conn = Advices.mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spCreateAdvice',
-                        (_adviceTitle, _adviceShortDescription, _adviceCategoryID, _adviceAuthorID, _adviceCreateDate,
+                        (_adviceTitle, _adviceShortDescription, _adviceCategoryName, _adviceAuthorName, _adviceCreateDate,
                          _adviceBody))
         data = cursor.fetchall()
 

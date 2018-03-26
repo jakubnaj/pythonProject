@@ -12,4 +12,9 @@ export class ArticleDetailsService {
       environment.endpoints.getArticle + String(Id)
     );
   }
+  getComments(Id: Number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(
+      environment.endpoints.getAdviceComments + String(Id)
+    );
+  }
 }

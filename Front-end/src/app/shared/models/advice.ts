@@ -1,9 +1,9 @@
 export interface Advice {
-  AuthorID: Number;
-  CategoryId: Number;
+  AuthorName: String;
+  CategoryName: String;
   CommentsQuantity: Number;
   CreateDate: String;
-  id: Number;
+  Id: Number;
   ShortDescription: String;
   Title: String;
   ViewsQuantity: Number;

@@ -30,14 +30,14 @@ class Comments(BaseModel):
     def createComment(self):
         parser = reqparse.RequestParser()
         parser.add_argument('adviceID', type=int, help='AdviceID', required=True)
-        parser.add_argument('authorID', type=int, help='AuthorID',
+        parser.add_argument('authorName', type=str, help='AuthorName',
                             required=True)
         parser.add_argument('content', type=str, help='Comment body', required=True)
         parser.add_argument('likesQuantity', type=int, help='Number of Likes', required=True)
         args = parser.parse_args()
 
         _adviceID = args['adviceID']
-        _authorID = args['authorID']
+        _authorName = args['authorName']
         _createDate = str(datetime.now())
         _content = args['content']
         _likesQuantity = args['likesQuantity']
@@ -45,7 +45,7 @@ class Comments(BaseModel):
         conn = Comments.mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spCreateComment',
-                        (_adviceID, _authorID, _createDate, _content, _likesQuantity))
+                        (_adviceID, _authorName, _createDate, _content, _likesQuantity))
         data = cursor.fetchall()
 
         if len(data) is 0:

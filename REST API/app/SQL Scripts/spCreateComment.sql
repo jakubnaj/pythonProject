@@ -1,12 +1,12 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spCreateComment`(
 IN p_adviceID INT,
-IN p_authorID INT,
+IN p_authorName VARCHAR(50),
 IN p_createDate VARCHAR(50),
 IN p_content VARCHAR(100),
 IN p_likesQuantity INT
 )
 BEGIN
-IF ( select NOT exists (select 1 from users where UserID = p_authorID) ) THEN
+IF ( select NOT exists (select 1 from users where UserName = p_authorName) ) THEN
 
     select 'Author not exists.';
 
@@ -18,7 +18,7 @@ BEGIN
 insert into comments
 (
     AdviceID,
-    AuthorID,
+    AuthorName,
     CreateDate,
     Content,
     LikesQuantity
@@ -26,7 +26,7 @@ insert into comments
 values
 (
     p_adviceID,
-    p_authorID,
+    p_authorName,
     p_createDate,
     p_content,
     p_likesQuantity

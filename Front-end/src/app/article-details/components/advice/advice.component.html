@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 mt-4">
-        <h6 class="text-muted float-left">{{article?.AuthorID}}: {{article?.CreateDate}} </h6>
+        <h6 class="text-muted float-left">{{article?.AuthorName}}: {{article?.CreateDate | date}} </h6>
         <div class="ml-auto float-right">
           <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image">
           <span class="text-muted">{{article?.ViewsQuantity}}</span>
