@@ -1,4 +1,4 @@
-<div class="card an-article" [routerLink]="['/article', advice.Id]">
+<article class="card an-article" [routerLink]="['/article', advice.Id]">
   <div class="card-body">
     <div class="row">
       <div class="col-9">
@@ -12,19 +12,27 @@
         </div>
       </div>
     </div>
-    <p class="card-text mb-0">{{advice.ShortDescription}}</p>
     <div class="row">
       <div class="col-8">
-        <h6 class="text-muted float-left">Author: {{advice.AuthorName}}: {{advice.CreateDate | date}} </h6>
+          <p class="card-text mb-0">{{advice.ShortDescription}}</p>
+      </div>
+      <div class="col-4">
+          <span class="float-right"><em>{{advice.CategoryName}}</em></span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-8">
+        <h6 class="text-muted float-left">{{advice.AuthorName}}: {{advice.CreateDate | date}} </h6>
         <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image"> <span
         class="text-muted">{{advice.ViewsQuantity}}</span>
         <img src="../../../../assets/icons/comments.svg" class="an-user-icon" alt="user image"> <span
         class="text-muted">{{advice.CommentsQuantity}}</span>
       </div>
       <div class="col-4">
-        <a href="#" class="card-link float-right">Zobacz więcej</a>
+        <a class="card-link float-right">Zobacz więcej</a>
       </div>
     </div>
   </div>
-</div>
+</article>
 

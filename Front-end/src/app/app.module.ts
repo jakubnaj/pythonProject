@@ -20,9 +20,10 @@ import {AccountModule} from './account/account.module';
     WallModule,
     RoutingModule,
     RouterModule,
-    AccountModule
+    AccountModule,
+    HttpClientModule
   ],
-  providers: [HttpClientModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
