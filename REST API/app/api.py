@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from resources.UserDispatcher import User, ChangePassword, SingleUser
+from resources.UserDispatcher import User, ChangePassword, SingleUser, LoginUser
 from resources.AdviceDispatcher import Advice, singleAdvice
 from resources.CommentDispatcher import Comment, singleComment, adviceComments
 from resources.CategoryDispatcher import Category, singleCategory
@@ -17,6 +17,7 @@ MySqlConfig.initDatabase(app)
 api.add_resource(User, '/user')
 api.add_resource(ChangePassword, '/user/<int:userID>/changePassword')
 api.add_resource(SingleUser, '/user/<int:userID>')
+api.add_resource(LoginUser, '/user/auth')
 
 # Advices resources
 api.add_resource(Advice, '/advice')

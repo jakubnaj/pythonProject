@@ -37,3 +37,9 @@ class ChangePassword(Resource):
     @auth.login_required
     def put(self, userID):
         return Users.changePassword(self, userID)
+
+class LoginUser(Resource):
+    @handle_error
+    @auth.login_required
+    def get(self):
+        return Users.loginUser(self);

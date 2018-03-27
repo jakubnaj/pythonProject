@@ -8,13 +8,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AccountService } from './services/account.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent],
   providers: [AccountService],

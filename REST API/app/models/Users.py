@@ -69,3 +69,6 @@ class Users(BaseModel):
             return {'message': 'User password Changed'}, 200
         else:
             return {'message': str(data[0])}, 200
+
+    def loginUser(self):
+        return {}, 200

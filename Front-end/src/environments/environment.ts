@@ -10,6 +10,7 @@ export const environment = {
     createUser: "http://localhost:5000/api/v1/user",
     getArticle: "http://localhost:5000/api/v1/advice/" ,
     getAdviceComments: "http://localhost:5000/api/v1/adviceComments/",
-    getCategories: "http://localhost:5000/api/v1/category"
+    getCategories: "http://localhost:5000/api/v1/category",
+    login: "http://localhost:5000/api/v1/user/auth"
   }
 };

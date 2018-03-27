@@ -8,7 +8,7 @@ import { Advice } from "../../shared/models/advice";
   templateUrl: "./wall-container.component.html",
   styleUrls: ["./wall-container.component.scss"]
 })
-export class WallContainerComponent implements OnInit, OnChanges {
+export class WallContainerComponent implements OnInit {
   originalAdvices: Advice[];
   advices: Advice[];
   categoryName: String;
