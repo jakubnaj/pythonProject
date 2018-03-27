@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { AddArticleComponent } from './components/add-article/add-article.component';
 import { ArticleService } from './services/article.service'
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [WallContainerComponent, ArticleComponent, AddArticleComponent],
   providers: [ArticleService],

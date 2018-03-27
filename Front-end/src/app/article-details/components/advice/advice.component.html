@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-12 mb-1">
-      <span class="float-right mr-2"><em>{{article.CategoryName}}</em></span>
+      <span class="float-right mr-2"><em>{{article.categoryName}}</em></span>
   </div>
 </div>
 <div class="card an-advice ">
-  <h3 class="card-header">{{article?.Title}}</h3>
+  <h3 class="card-header">{{article?.title}}</h3>
   <div class="card-body">
     <div class="row">
       <div class="col-12">
@@ -13,12 +13,12 @@
     </div>
     <div class="row">
       <div class="col-md-12 mt-4">
-        <h6 class="text-muted float-left">{{article?.AuthorName}}: {{article?.CreateDate | date}} </h6>
+        <h6 class="text-muted float-left">{{article?.authorName}}: {{article?.createDate | date}} </h6>
         <div class="ml-auto float-right">
           <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image">
-          <span class="text-muted">{{article?.ViewsQuantity}}</span>
+          <span class="text-muted">{{article?.viewsQuantity}}</span>
           <img src="../../../../assets/icons/comments.svg" class="an-user-icon" alt="user image">
-          <span class="text-muted">{{article?.CommentsQuantity}}</span>
+          <span class="text-muted">{{article?.commentsQuantity}}</span>
         </div>
       </div>
     </div>

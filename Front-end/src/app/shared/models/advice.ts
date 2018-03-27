@@ -1,11 +1,11 @@
 export interface Advice {
-  AuthorName: String;
-  CategoryName: String;
-  CommentsQuantity: Number;
-  CreateDate: String;
-  Id: Number;
-  ShortDescription: String;
-  Title: String;
-  ViewsQuantity: Number;
+  authorName: String;
+  categoryName: String;
+  commentsQuantity?: Number;
+  createDate?: String;
+  id?: Number;
+  shortDescription: String;
+  title: String;
+  viewsQuantity?: Number;
   body: String;
 }

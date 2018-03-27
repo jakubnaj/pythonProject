@@ -7,7 +7,5 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class NavigationService {
   constructor(private http: HttpClient) {}
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(environment.endpoints.getCategories);
-  }
+ 
 }

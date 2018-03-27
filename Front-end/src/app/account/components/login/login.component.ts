@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "../../../shared/services/auth.service";
+import { AuthService } from "../../../shared/services/auth/auth.service";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(form.value.username, form.value.password).subscribe(
       data => {
         this.error = "";
+        this.authService.saveCredentials(form.value.username,form.value.password);
         this.router.navigate([""]);
       },
       error => {

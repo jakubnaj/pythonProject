@@ -18,25 +18,27 @@
           <a class="dropdown-item">Inne</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link">Dodaj</a>
+      <li class="nav-item" *ngIf=username>
+        <a class="nav-link" routerLink="/add-article">Dodaj</a>
       </li>
-      <!-- <form class="form-inline my-2 my-lg-0 ml-auto">
-        <input class="form-control mr-sm-2" type="text" placeholder="Szukaj">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Szukaj</button>
-      </form> -->
+
       <div class="btn-group an-user-profile ml-auto">
-
+        <h3>{{username}}</h3>
         <img src="../../../../assets/icons/user.svg" class="an-user-icon dropdown-toggle" data-toggle="dropdown" alt="user image">
-
         <div class="dropdown-menu dropdown-menu-right">
-          <button class="dropdown-item" type="button">Poproś o rade</button>
-          <button class="dropdown-item" type="button">Moje dyskusje</button>
-          <button class="dropdown-item" type="button">Ulubione</button>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item" type="button" [routerLink]="['/reset-password']">Zmień hasło</button>
-          <button class="dropdown-item" type="button">Zmień avatar</button>
-          <button class="dropdown-item" type="button">Wyloguj</button>
+          <ng-container *ngIf=username>
+            <button class="dropdown-item" type="button">Poproś o rade</button>
+            <button class="dropdown-item" type="button">Moje dyskusje</button>
+            <button class="dropdown-item" type="button">Ulubione</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" type="button" [routerLink]="['/reset-password']">Zmień hasło</button>
+            <button class="dropdown-item" type="button">Zmień avatar</button>
+            <button class="dropdown-item" type="button" (click)="logout()">Wyloguj</button>
+          </ng-container>
+          <ng-container *ngIf=!username>
+            <button class="dropdown-item" type="button" routerLink="/register">Zarejestruj</button>
+            <button class="dropdown-item" type="button" routerLink="/login">Zaloguj</button>
+          </ng-container>
         </div>
       </div>
 

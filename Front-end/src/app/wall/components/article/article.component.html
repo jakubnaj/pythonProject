@@ -1,8 +1,8 @@
-<article class="card an-article" [routerLink]="['/article', advice.Id]">
+<article class="card an-article" [routerLink]="['/article', advice.id]">
   <div class="card-body">
     <div class="row">
       <div class="col-9">
-        <h4 class="card-title">{{advice.Title}}</h4>
+        <h4 class="card-title">{{advice.title}}</h4>
       </div>
       <div class="col-3">
         <div class="float-right">
@@ -14,20 +14,20 @@
     </div>
     <div class="row">
       <div class="col-8">
-          <p class="card-text mb-0">{{advice.ShortDescription}}</p>
+          <p class="card-text mb-0">{{advice.shortDescription}}</p>
       </div>
       <div class="col-4">
-          <span class="float-right"><em>{{advice.CategoryName}}</em></span>
+          <span class="float-right"><em>{{advice.categoryName}}</em></span>
       </div>
     </div>
     
     <div class="row">
       <div class="col-8">
-        <h6 class="text-muted float-left">{{advice.AuthorName}}: {{advice.CreateDate | date}} </h6>
+        <h6 class="text-muted float-left">{{advice.authorName}}: {{advice.createDate | date}} </h6>
         <img src="../../../../assets/icons/view.svg" class="an-user-icon" alt="user image"> <span
-        class="text-muted">{{advice.ViewsQuantity}}</span>
+        class="text-muted">{{advice.viewsQuantity}}</span>
         <img src="../../../../assets/icons/comments.svg" class="an-user-icon" alt="user image"> <span
-        class="text-muted">{{advice.CommentsQuantity}}</span>
+        class="text-muted">{{advice.commentsQuantity}}</span>
       </div>
       <div class="col-4">
         <a class="card-link float-right">Zobacz więcej</a>

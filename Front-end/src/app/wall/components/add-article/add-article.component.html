@@ -8,27 +8,31 @@
               <h3 class="mb-0">Poproś o radę</h3>
             </div>
             <div class="card-body">
-              <form class="form" role="form" autocomplete="off" id="formLogin">
-
+              <form name="form" class="form" #addAdvice="ngForm" role="form" (ngSubmit)="add(addAdvice)" ngNativeValidate>
+                <div class="form-group">
+                  <label for="exampleTextarea">Tytuł</label>
+                  <input type="text" class="form-control" name="adTitle" ngModel minlength="5" maxlength="35" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleTextarea">Krótki opis</label>
+                  <textarea class="form-control" name="shortDesc" ngModel rows="2" minlength="15" maxlength="50" required></textarea>
+                </div>
                 <div class="form-group">
                   <label for="exampleTextarea">Treść</label>
-                  <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                  <textarea class="form-control" name="body" ngModel rows="3" required></textarea>
                 </div>
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleSelect1">Wybierz Kategorię</label>
-                      <select class="form-control" id="exampleSelect1">
-                        <option>nie wybrano</option>
-                        <option>Wyznania</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                      <select class="form-control" name="category" ngModel required>
+                        <option>wybierz</option>
+                        <option *ngFor="let category of categories">{{category.Name}}</option>
                       </select>
                     </div>
 
                   </div>
-                  <div class="col-12">
+                  <!-- <div class="col-12">
 
                     <div class="form-group">
                       <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -61,6 +65,13 @@
 
                     </div>
 
+                  </div> -->
+                </div>
+                <div class="row" *ngIf="error">
+                  <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                      <strong> Error: {{error}} </strong>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -68,7 +79,7 @@
                     <span class="text-muted text-left">Zadbaj o poprawną pisownie i składnie</span>
                   </div>
                   <div class="col-4">
-                    <button type="button" class="btn btn-primary btn-lg float-right">Dodaj</button>
+                    <button type="submit" class="btn btn-primary btn-lg float-right">Dodaj</button>
                   </div>
                 </div>
               </form>

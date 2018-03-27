@@ -23,7 +23,7 @@ class Advices(BaseModel):
         return {'message': 'Delete successful'}, 200
 
     def createAdvice(self):
-
+        print("pipa");
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, help='title', required=True)
         parser.add_argument('shortDescription', type=str, help='short description to be shown on main page',
