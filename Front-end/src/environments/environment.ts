@@ -11,6 +11,7 @@ export const environment = {
     getArticle: "http://localhost:5000/api/v1/advice/" ,
     getAdviceComments: "http://localhost:5000/api/v1/adviceComments/",
     getCategories: "http://localhost:5000/api/v1/category",
-    login: "http://localhost:5000/api/v1/user/auth"
+    login: "http://localhost:5000/api/v1/user/auth",
+    comment: "http://localhost:5000/api/v1/comment"
   }
 };

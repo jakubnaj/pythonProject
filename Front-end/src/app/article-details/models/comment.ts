@@ -1,8 +1,8 @@
 export interface Comment {
-  ID: Number;
-  AdviceID: Number;
-  AuthorName: String;
-  CreateDate: String;
-  Content: String;
-  LikesQuantity: Number;
+  ID?: Number;
+  adviceID: Number;
+  authorName: String;
+  createDate?: String;
+  content: String;
+  likesQuantity: Number;
 }
