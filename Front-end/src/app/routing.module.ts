@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "forgot-password", component: ForgotPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
-  { path: "add-article", component: AddArticleComponent }
+  { path: "add-article", component: AddArticleComponent },
 ];
 
 @NgModule({

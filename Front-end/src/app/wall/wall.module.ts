@@ -7,6 +7,7 @@ import { AddArticleComponent } from './components/add-article/add-article.compon
 import { ArticleService } from './services/article.service'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
+import { WallCommunicationService } from './services/wall-communication.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { FormsModule }   from '@angular/forms';
     FormsModule
   ],
   declarations: [WallContainerComponent, ArticleComponent, AddArticleComponent],
-  providers: [ArticleService],
+  providers: [ArticleService,WallCommunicationService],
   exports: [WallContainerComponent, AddArticleComponent]
 })
 export class WallModule { }

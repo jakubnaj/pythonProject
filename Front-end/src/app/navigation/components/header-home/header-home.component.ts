@@ -3,6 +3,7 @@ import { NavigationService } from "../../services/navigation.service";
 import { Category } from "../../models/category";
 import { CategoryService } from "../../../shared/services/category/category.service";
 import { AuthService } from "../../../shared/services/auth/auth.service";
+import { WallCommunicationService } from "../../../wall/services/wall-communication.service";
 
 @Component({
   selector: "app-header-home",
@@ -14,7 +15,8 @@ export class HeaderHomeComponent implements OnInit {
   username: String;
   constructor(
     private categoryService: CategoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private wallCommunicationService: WallCommunicationService
   ) {}
 
   ngOnInit() {
@@ -29,5 +31,9 @@ export class HeaderHomeComponent implements OnInit {
   }
   logout() {
     this.authService.logout();
+  }
+
+  sendWall(what: string){
+      this.wallCommunicationService.activeName.next(what);
   }
 }

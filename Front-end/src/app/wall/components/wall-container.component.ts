@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 import { ArticleService } from "../services/article.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Advice } from "../../shared/models/advice";
+import { WallCommunicationService } from "../services/wall-communication.service";
 
 @Component({
   selector: "app-wall-container",
@@ -13,22 +14,30 @@ export class WallContainerComponent implements OnInit {
   advices: Advice[];
   categoryName: String;
   constructor(
-    private route: ActivatedRoute,
-    private article: ArticleService,
-    private activatedRoute: ActivatedRoute
+    private wallCommunicationService: WallCommunicationService,
+    private article: ArticleService
   ) {}
   ngOnInit() {
     this.article.getArticle().subscribe(data => {
-      this.originalAdvices = data;
-      this.advices = data;
+      this.originalAdvices = data.sort((x, y) => {
+        return Number(y.createDate) - Number(x.createDate);
+      });
+      this.advices = this.originalAdvices;
     });
-    this.route.paramMap.subscribe(params => {
-      if (params.get("categoryName") && this.originalAdvices) {
-        this.advices = this.article.filterByCategory(
-          this.originalAdvices,
-          params.get("categoryName")
-        );
+    this.wallCommunicationService.activeName.subscribe(data => {
+      if (!data) {
+        this.advices = this.originalAdvices;
+      } else if (data === "top") {
+        this.advices = this.sort(this.originalAdvices);
+      } else {
+        this.advices = this.filter(this.originalAdvices, data);
       }
     });
+  }
+  filter(advices: Advice[], name: string) {
+    return this.article.filterByCategory(advices, name);
+  }
+  sort(advices: Advice[]) {
+    return this.article.sortBySeen(advices);
   }
 }

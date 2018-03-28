@@ -25,9 +25,12 @@ export class CommentsComponent implements OnInit {
     this.getComments();
   }
   getComments() {
-    this.articleDetailsService
-      .getComments(this.adviceID)
-      .subscribe(data => {this.comments = data;console.log(this.comments)}, error => console.error(error));
+    this.articleDetailsService.getComments(this.adviceID).subscribe(
+      data => {
+        this.comments = data;
+      },
+      error => console.error(error)
+    );
   }
   addComment(form: NgForm) {
     const comment: Comment = {
