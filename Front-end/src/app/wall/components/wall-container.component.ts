@@ -25,10 +25,12 @@ export class WallContainerComponent implements OnInit {
       this.advices = this.originalAdvices;
     });
     this.wallCommunicationService.activeName.subscribe(data => {
-      if (!data) {
+      if (data === "wall") {
+        console.log('pipa');
         this.advices = this.originalAdvices;
       } else if (data === "top") {
-        this.advices = this.sort(this.originalAdvices);
+        let temp = Object.create(this.originalAdvices);
+        this.advices = this.sort(temp);
       } else {
         this.advices = this.filter(this.originalAdvices, data);
       }
