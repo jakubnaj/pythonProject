@@ -48,4 +48,18 @@ export class CommentsComponent implements OnInit {
       }
     );
   }
+  updateLikesQuantity(comment, action: string) {
+    this.articleDetailsService.updateLikes(comment.iD, action).subscribe(
+      data => {
+        if(action === 'add'){
+          comment.likesQuantity += 1;
+        }else if(action === 'remove'){
+          comment.likesQuantity -= 1;
+        }
+      },
+      error => {
+        this.error = error.message;
+      }
+    );
+  }
 }

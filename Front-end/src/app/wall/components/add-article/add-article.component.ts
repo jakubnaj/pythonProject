@@ -35,7 +35,7 @@ export class AddArticleComponent implements OnInit {
     ) {
       this.router.navigate(["/login"]);
     }
-    let advice: Advice = {};
+    let advice: any = {};
     let tempObj = form.value;
     advice.title = tempObj.adTitle;
     advice.shortDescription = tempObj.shortDesc;

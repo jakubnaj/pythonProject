@@ -26,7 +26,6 @@ export class WallContainerComponent implements OnInit {
     });
     this.wallCommunicationService.activeName.subscribe(data => {
       if (data === "wall") {
-        console.log('pipa');
         this.advices = this.originalAdvices;
       } else if (data === "top") {
         let temp = Object.create(this.originalAdvices);

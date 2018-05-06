@@ -28,6 +28,10 @@ class singleComment(Resource):
     def get(self, commentID):
         return Comments.getSingleComment(self, commentID)
 
+    @auth.login_required
+    def put(self, commentID):
+        return Comments.updateLikesQuantity(self, commentID)
+
     @adminAuth.login_required
     def delete(self, commentID):
         return Comments.deleteSingleComment(self, commentID)

@@ -7,13 +7,22 @@
       
           <img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar">
       </div>
-      <div class="comment-content col-md-11 col-sm-10">
+      <div class="comment-content col-md-9 col-sm-10">
         <h6 class="small comment-meta">
           <a href="#">{{comment.authorName}}</a> {{comment.createDate | date}}</h6>
         <div class="comment-body">
           <p>
             {{comment.content}}
           </p>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="text-right">
+          <strong class="mr-1">{{comment.likesQuantity}}</strong>
+          <span *ngIf="username" class="arrows">
+            <img (click) = "updateLikesQuantity(comment, 'add')"class="img-fluid arrow-up" src="../../../../assets/icons/arrow-up.png" alt="icon">
+            <img (click) = "updateLikesQuantity(comment, 'remove')"class="img-fluid arrow-down" src="../../../../assets/icons/arrow-down.png" alt="icon">
+          </span>
         </div>
       </div>
     </div>

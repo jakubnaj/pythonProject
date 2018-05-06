@@ -27,6 +27,27 @@ class Comments(BaseModel):
         BaseModel.baseRequest(self, "DELETE FROM comments WHERE Id='{0}'", commentID)
         return {'message': 'Delete successful'}, 200
 
+    def updateLikesQuantity(self, commentID):
+        if not BaseModel.baseRequest(self, "SELECT * FROM comments WHERE Id='{0}'", commentID):
+            return {'message': 'Not found'}, 404
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('action', type=str, help='add or remove', required=True)
+        args = parser.parse_args()
+
+        _action = args['action']
+        if(_action == 'add'):
+            BaseModel.baseRequest(self, "UPDATE comments SET likesQuantity = likesQuantity + 1 WHERE Id='{0}'",
+                                  commentID)
+            return {'message': 'Updated succesfully'}, 200
+        elif(_action == 'remove'):
+            BaseModel.baseRequest(self, "UPDATE comments SET likesQuantity = likesQuantity - 1 WHERE Id='{0}'",
+                                  commentID)
+            return {'message': 'Updated succesfully'}, 200
+        else:
+            return {'message': 'action not found'}, 404
+
+
     def createComment(self):
         parser = reqparse.RequestParser()
         parser.add_argument('adviceID', type=int, help='AdviceID', required=True)
