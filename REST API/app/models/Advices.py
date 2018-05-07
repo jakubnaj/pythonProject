@@ -23,7 +23,6 @@ class Advices(BaseModel):
         return {'message': 'Delete successful'}, 200
 
     def createAdvice(self):
-        print("pipa");
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, help='title', required=True)
         parser.add_argument('shortDescription', type=str, help='short description to be shown on main page',
@@ -31,6 +30,7 @@ class Advices(BaseModel):
         parser.add_argument('categoryName', type=str, help='CategoryName', required=True)
         parser.add_argument('authorName', type=str, help='AuthorName', required=True)
         parser.add_argument('body', type=str, help='Content', required=True)
+        parser.add_argument('tags', type=str, help='Content', required=False)
         args = parser.parse_args()
 
         _adviceTitle = args['title']
@@ -39,12 +39,13 @@ class Advices(BaseModel):
         _adviceAuthorName = args['authorName']
         _adviceCreateDate = str(datetime.now())
         _adviceBody = args['body']
+        _adviceTags = args['tags']
 
         conn = Advices.mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spCreateAdvice',
                         (_adviceTitle, _adviceShortDescription, _adviceCategoryName, _adviceAuthorName, _adviceCreateDate,
-                         _adviceBody))
+                         _adviceBody, _adviceTags))
         data = cursor.fetchall()
 
         if len(data) is 0:

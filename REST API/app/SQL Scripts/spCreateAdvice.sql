@@ -4,7 +4,8 @@ IN p_adviceShortDescription varchar(150),
 IN p_adviceCategoryName varchar(50),
 IN p_adviceAuthorName varchar(50),
 IN p_adviceCreateDate varchar(100),
-IN p_adviceBody TEXT
+IN p_adviceBody TEXT,
+IN p_adviceTags TEXT
 )
 BEGIN
 IF ( select NOT exists (select 1 from users where UserName = p_adviceAuthorName) ) THEN
@@ -22,7 +23,8 @@ insert into advices
     CreateDate,
     ViewsQuantity,
     CommentsQuantity,
-    Body
+    Body,
+    Tags
     
 )
 values
@@ -34,7 +36,8 @@ values
     p_adviceCreateDate,
     0,
     0,
-    p_adviceBody
+    p_adviceBody,
+    p_adviceTags
 );
 END;
 END IF;

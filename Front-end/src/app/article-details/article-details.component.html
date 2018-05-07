@@ -1,4 +1,6 @@
 <div class="container an-article-details-container mb-4" *ngIf=article>
-  <app-advice [article]=article></app-advice>
+  <app-advice [article]="article"></app-advice>
+  <app-statistics [tags] = "article.tags" [adviceID]="article.id"></app-statistics>
   <app-comments [adviceID]="article.id"></app-comments>
 </div>
+ 

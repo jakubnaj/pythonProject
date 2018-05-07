@@ -5,11 +5,12 @@ import { ArticleDetailsComponent } from "./article-details.component";
 import { CommentsComponent } from "./components/comments/comments.component";
 import { AdviceComponent } from "./components/advice/advice.component";
 import { ArticleDetailsService } from "./services/article-details.service";
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  declarations: [ArticleDetailsComponent, CommentsComponent, AdviceComponent],
+  declarations: [ArticleDetailsComponent, CommentsComponent, AdviceComponent, StatisticsComponent],
   providers: [ArticleDetailsService],
   exports: [ArticleDetailsComponent]
 })

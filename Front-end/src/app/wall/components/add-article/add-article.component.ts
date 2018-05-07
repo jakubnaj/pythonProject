@@ -41,9 +41,9 @@ export class AddArticleComponent implements OnInit {
     advice.shortDescription = tempObj.shortDesc;
     advice.body = tempObj.body;
     advice.categoryName = tempObj.category;
+    advice.tags = tempObj.tags;
 
     advice.authorName = localStorage.getItem("username");
-
     this.articleService.create(advice).subscribe(data => {
       this.router.navigate([""]), error => (this.error = error.message);
     });

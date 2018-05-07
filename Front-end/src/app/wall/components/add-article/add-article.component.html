@@ -10,21 +10,25 @@
             <div class="card-body">
               <form name="form" class="form" #addAdvice="ngForm" role="form" (ngSubmit)="add(addAdvice)" ngNativeValidate>
                 <div class="form-group">
-                  <label for="exampleTextarea">Tytuł</label>
+                  <label for="exampleTextarea">Tytuł*</label>
                   <input type="text" class="form-control" name="adTitle" ngModel minlength="5" maxlength="35" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleTextarea">Krótki opis</label>
+                  <label for="exampleTextarea">Krótki opis*</label>
                   <textarea class="form-control" name="shortDesc" ngModel rows="2" minlength="15" maxlength="50" required></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="exampleTextarea">Treść</label>
+                  <label for="exampleTextarea">Treść*</label>
                   <textarea class="form-control" name="body" ngModel rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="exampleTextarea">Słowa kluczowe(na czym Ci najbardziej zależy)</label>
+                  <textarea class="form-control" name="tags" ngModel rows="2"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="exampleSelect1">Wybierz Kategorię</label>
+                      <label for="exampleSelect1">Wybierz Kategorię*</label>
                       <select class="form-control" name="category" ngModel required>
                         <option>wybierz</option>
                         <option *ngFor="let category of categories">{{category.Name}}</option>

@@ -1,0 +1,4 @@
+CREATE TABLE `adwisedb`.`tags` (
+  `name` VARCHAR(45) NOT NULL,
+  `adviceID` INT NOT NULL,
+  `like` INT NOT NULL);

@@ -1,0 +1,23 @@
+<div class="card mb-3" *ngIf="tagArray">
+  <h3 class="card-header">Doradzamy!</h3>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12" *ngIf="statistics">
+        <div *ngFor="let tag of statistics">{{tag.name}}
+          <div class="progress mb-1">
+            <div 
+            *ngIf="tag.likesQuantity !==0 || tag.unLikesQuantity !==0" 
+            class="progress-bar" 
+            [class]="tag.likesQuantity === 0 ? 'bg-danger progress-bar' : 'progress-bar'" 
+            role="progressbar" 
+            [style.width.%]="tag.likesQuantity === 0 ? 100 : (tag.likesQuantity/(tag.likesQuantity+tag.unLikesQuantity))*100
+              ">
+              <span class="text-center" *ngIf="tag.likesQuantity === 0">0 %</span>
+              <span *ngIf="tag.likesQuantity !== 0">{{((tag.likesQuantity/(tag.likesQuantity+tag.unLikesQuantity))*100).toFixed(2) }} % </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

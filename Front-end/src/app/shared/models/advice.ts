@@ -8,4 +8,5 @@ export interface Advice {
   title: String;
   viewsQuantity?: Number;
   body: String;
+  tags: String;
 }
